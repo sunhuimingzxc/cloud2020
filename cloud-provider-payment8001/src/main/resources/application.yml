@@ -1,0 +1,23 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://192.168.10.100:3306/db2020?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+
+mybatis: #与mybatis整合
+  mapperLocations: classpath:mapper/*.xml  #mybatis的mapper存放位置
+  type-aliases-package: com.atguigu.springcloud.entities    # 所有Entity别名类所在包
