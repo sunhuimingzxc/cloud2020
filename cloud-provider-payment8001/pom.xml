@@ -12,6 +12,13 @@
     <artifactId>cloud-provider-payment8001</artifactId>
 
     <dependencies>
+        <!-- 公共entity -->
+        <dependency>
+            <artifactId>cloud-api-common</artifactId>
+            <groupId>com.atguigu.springcloud</groupId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!--包含了sleuth+zipkin-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
