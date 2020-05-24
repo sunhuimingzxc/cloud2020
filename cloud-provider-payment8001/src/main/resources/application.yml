@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-payment-service
+    name: cloud-payment-service     #对外暴露的服务名
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
@@ -16,8 +16,11 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #连接注册中心
       #defaultZone: http://localhost:7001/eureka
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    prefer-ip-address: true  #设置再eureka控制台，鼠标点击服务名显示该服务ip
+    instance-id: payment8001 #设置再eureka控制台服务名显示payment8001
 
 mybatis: #与mybatis整合
   mapperLocations: classpath:mapper/*.xml  #mybatis的mapper存放位置
