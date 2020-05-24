@@ -11,12 +11,12 @@ spring:
     username: root
     password: 123456
 
-
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
 
 mybatis: #与mybatis整合
   mapperLocations: classpath:mapper/*.xml  #mybatis的mapper存放位置
