@@ -3,6 +3,7 @@ package com.atguigu.springcloud.controller;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -30,5 +31,18 @@ public class OrderController {
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult<Payment> get(@PathVariable("id") Long id){
         return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
+    }
+
+    /**
+     * getForEntity会返回更为详细的响应信息，而getForObject只返回json
+     */
+    @GetMapping("/consumer/payment/get2/{id}")
+    public CommonResult<Payment> get2(@PathVariable("id") Long id){
+        ResponseEntity<CommonResult> responseEntity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
+        if(responseEntity.getStatusCode().is2xxSuccessful()){
+            return responseEntity.getBody();
+        }else{
+            return new CommonResult(444,"操作失败","操作失败");
+        }
     }
 }
